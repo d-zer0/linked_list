@@ -14,15 +14,14 @@ end
 class LinkedList
 	attr_reader :first_node, :last_node
 	def initialize
-		@first_node = Node.new
-		@last_node = @first_node
+		@first_node = nil
+		@last_node = nil
 	end
 
-	def append(data)
-		new_node = Node.new(data)
-		if @first_node.data == nil
-			@first_node.data = new_node
-			@first_node.next_node = new_node
+	def append(node)
+		new_node = Node.new(node)
+		if @first_node == nil
+			@first_node = new_node
 			@last_node = new_node
 		else
 			# @last_node's next_node becomes new_node
@@ -30,6 +29,17 @@ class LinkedList
 			@last_node = new_node
 			# @last_node becomes new_node
 			#@last_node = new_node
+		end
+	end
+
+	def prepend(node)
+
+		if @first_node == nil
+			new_node = Node.new(node)
+			@first_node = new_node
+			@last_node = new_node
+		else
+			@first_node = Node.new(node, first_node)
 		end
 	end
 
@@ -51,6 +61,13 @@ puts
 puts "Next node: " + linked_list.first_node.next_node.next_node.next_node.next_node.inspect
 puts
 puts "Last node: " + linked_list.last_node.inspect
+puts
+linked_list.prepend("Zero")
+puts
+puts "First node: " + linked_list.first_node.inspect
+puts
+puts "Size: " + linked_list.size
+
 
 =begin
 
