@@ -7,7 +7,7 @@ class Node
 end
 
 class List
-	attr_accessor :name
+	attr_accessor :name, :head, :tail
 	def initialize
 		@head = nil
 		@tail = nil
@@ -44,15 +44,7 @@ class List
 				size += 1
 			end
 		end
-		puts "Size: #{size}"
-	end
-
-	def head
-		puts "Head: " + @head.data.to_s
-	end
-
-	def tail
-		puts "Tail: " + @tail.data.to_s
+		size
 	end
 
 	def at(index)
@@ -65,7 +57,8 @@ class List
 				location = location.next
 				counter += 1
 			end
-			puts "At index #{index}: " + location.data.to_s
+			location
+#			puts "At index #{index}: " + location.data.to_s
 		end
 	end
 
@@ -87,7 +80,7 @@ class List
 			location = location.next
 			return true if location == value
 		end
-		return false
+		false
 	end
 
 end
@@ -116,16 +109,16 @@ puts "Zero: " + zero.inspect
 puts
 puts "Zero data: " + zero.data.inspect + "| next: " + zero.next.data.inspect
 puts
-list.size
+puts "Size: " + list.size.to_s
 puts
-list.head
+puts "Head: [Data: #{list.head.data.inspect}]-[Next: #{list.head.next.data.inspect}]"
 puts
-list.tail
+puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
 puts
-list.at(2)
+puts "Tail: " + list.tail.to_s
 puts
+puts "Index 2: " + list.at(2).data.to_s
 list.pop
-list.tail
 puts
 puts "List contains 'two': " + list.contains?(two).to_s
 puts
