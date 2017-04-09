@@ -19,39 +19,64 @@ class LinkedList
 	end
 
 	def append(node)
-		new_node = Node.new(node)
 		if @first_node == nil
-			@first_node = new_node
-			@last_node = new_node
+			@first_node = node
+		elsif @last_node == nil
+			@last_node = node
+			@first_node.next_node = node
 		else
 			# @last_node's next_node becomes new_node
-			@last_node.next_node = new_node
-			@last_node = new_node
+			@last_node.next_node = node.data
+			@last_node = node
 			# @last_node becomes new_node
 			#@last_node = new_node
 		end
 	end
-
+=begin
 	def prepend(node)
 
 		if @first_node == nil
-			new_node = Node.new(node)
-			@first_node = new_node
-			@last_node = new_node
+			@first_node = node
+			@last_node = node
 		else
-			@first_node = Node.new(node, first_node)
+			@first_node = node
 		end
 	end
-
+=end
 end
 
 linked_list = LinkedList.new
-linked_list.append("One")
-linked_list.append("Two")
-linked_list.append("Three")
-linked_list.append("Four")
-linked_list.append("Five")
-linked_list.append("Six")
+
+node_one = linked_list.append("one")
+node_two = linked_list.append("two")
+node_three = linked_list.append("three")
+node_four = linked_list.append("four")
+node_five = linked_list.append("five")
+node_six = linked_list.append("six")
+
+puts "First node: " + node_one.inspect
+puts
+puts "First's next node: " + node_one.next_node.inspect
+puts
+puts "Firsts next next node: " + node_one.next_node.next_node.inspect
+puts
+"First's next next next node: " + node_one.next_node.next_node.next_node.inspect
+puts
+puts "Last node: " + linked_list.last_node.inspect
+puts
+puts "Third node: " + node_three.inspect
+puts
+puts "Second node: " + node_two.inspect
+puts
+puts "Fourth node: " + node_four.inspect
+puts
+puts "Fifth node: " + node_five.inspect
+puts 
+puts "Sixth node: " + node_six.inspect
+
+=begin
+0.1 version debugging
+
 puts "First node: " + linked_list.first_node.inspect
 puts
 puts "Next node: " + linked_list.first_node.next_node.next_node.inspect
@@ -65,9 +90,8 @@ puts
 linked_list.prepend("Zero")
 puts
 puts "First node: " + linked_list.first_node.inspect
-puts
-puts "Size: " + linked_list.size
 
+=end
 
 =begin
 
