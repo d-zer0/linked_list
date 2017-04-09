@@ -97,7 +97,19 @@ class List
 		index
 	end
 
+	# ( data ) -> ( data ) -> ( data ) -> nil
+	def to_s
+		location = @head
+		until location.nil?
+			print "( " + location.data.inspect + " ) -> "
+			location = location.next
+		end
+		print "nil"
+	end
+
 end
+
+=begin
 
 # TESTING
 
@@ -153,3 +165,7 @@ puts
 puts "Find 'two': index is " + list.find("two").inspect
 puts
 puts "Error test: Find 'eighteen': index is " + list.find("eighteen").inspect
+puts
+puts list.to_s
+
+=end
