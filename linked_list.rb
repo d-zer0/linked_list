@@ -49,7 +49,7 @@ class List
 
 	def at(index)
 		if @head.nil?
-			puts "Error: No data in list."
+			location = nil
 		else
 			location = @head
 			counter  = 0
@@ -57,21 +57,17 @@ class List
 				location = location.next
 				counter += 1
 			end
-			location
-#			puts "At index #{index}: " + location.data.to_s
 		end
+		location
 	end
 
 	def pop
-		if @head.nil?
-			puts "Error: List has no data."
-		else
-			location = @head
-			until location.next == @tail
-				location = location.next
-			end
-			@tail = location
+		location = @head
+		until location.next == @tail
+			location = location.next
 		end
+		@tail = location
+		@tail.next = nil
 	end
 
 	def contains?(value)
@@ -81,6 +77,24 @@ class List
 			return true if location == value
 		end
 		false
+	end
+
+	def find(data)
+		if @head.nil?
+			index = nil
+		else
+			index = 0
+			location = @head
+			until location.next.nil?
+				if location.data == data
+					return index
+				end
+				location = location.next
+				index += 1
+			end
+		end
+		index = nil
+		index
 	end
 
 end
@@ -115,12 +129,27 @@ puts "Head: [Data: #{list.head.data.inspect}]-[Next: #{list.head.next.data.inspe
 puts
 puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
 puts
-puts "Tail: " + list.tail.to_s
+puts "POP!"
+puts
+puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
+puts
+three = Node.new("three")
+list.append(three)
+puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
 puts
 puts "Index 2: " + list.at(2).data.to_s
-list.pop
+index_test = List.new
 puts
+puts "Error test: Index 5 of empty list: " + index_test.at(5).inspect
+puts
+list.pop
 puts "List contains 'two': " + list.contains?(two).to_s
 puts
 eightyeight = true
 puts "List contains 'eightyeight': " + list.contains?(eightyeight).to_s
+puts
+puts "Find 'zero': index is " + list.find("zero").inspect
+puts
+puts "Find 'two': index is " + list.find("two").inspect
+puts
+puts "Error test: Find 'eighteen': index is " + list.find("eighteen").inspect
