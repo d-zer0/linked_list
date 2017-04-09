@@ -35,10 +35,14 @@ class List
 
 	def size
 		location = @head
-		size = 0
-		until location.next.nil?
-			location = location.next
-			size += 1
+		if @head.nil?
+			size = 0
+		else
+			size = 1
+			until location.next.nil?
+				location = location.next
+				size += 1
+			end
 		end
 		puts "Size: #{size}"
 	end
@@ -68,4 +72,4 @@ puts "Zero: " + zero.inspect
 puts
 puts "Zero data: " + zero.data.inspect + "| next: " + zero.next.data.inspect
 puts
-puts "Size: " + list.size
+list.size
