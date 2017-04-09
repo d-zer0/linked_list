@@ -69,6 +69,27 @@ class List
 		end
 	end
 
+	def pop
+		if @head.nil?
+			puts "Error: List has no data."
+		else
+			location = @head
+			until location.next == @tail
+				location = location.next
+			end
+			@tail = location
+		end
+	end
+
+	def contains?(value)
+		location = @head
+		until location.next.nil?
+			location = location.next
+			return true if location == value
+		end
+		return false
+	end
+
 end
 
 # TESTING
@@ -102,3 +123,11 @@ puts
 list.tail
 puts
 list.at(2)
+puts
+list.pop
+list.tail
+puts
+puts "List contains 'two': " + list.contains?(two).to_s
+puts
+eightyeight = true
+puts "List contains 'eightyeight': " + list.contains?(eightyeight).to_s
