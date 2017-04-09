@@ -34,10 +34,10 @@ class List
 	end
 
 	def size
-		location = @head
 		if @head.nil?
 			size = 0
 		else
+			location = @head
 			size = 1
 			until location.next.nil?
 				location = location.next
@@ -46,6 +46,29 @@ class List
 		end
 		puts "Size: #{size}"
 	end
+
+	def head
+		puts "Head: " + @head.data.to_s
+	end
+
+	def tail
+		puts "Tail: " + @tail.data.to_s
+	end
+
+	def at(index)
+		if @head.nil?
+			puts "Error: No data in list."
+		else
+			location = @head
+			counter  = 0
+			until counter == index
+				location = location.next
+				counter += 1
+			end
+			puts "At index #{index}: " + location.data.to_s
+		end
+	end
+
 end
 
 # TESTING
@@ -73,3 +96,9 @@ puts
 puts "Zero data: " + zero.data.inspect + "| next: " + zero.next.data.inspect
 puts
 list.size
+puts
+list.head
+puts
+list.tail
+puts
+list.at(2)
