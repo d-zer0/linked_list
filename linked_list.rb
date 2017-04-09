@@ -80,9 +80,7 @@ class List
 	end
 
 	def find(data)
-		if @head.nil?
-			index = nil
-		else
+		unless @head.nil?
 			index = 0
 			location = @head
 			until location.next.nil?
@@ -110,21 +108,16 @@ class List
 end
 
 =begin
-
 # TESTING
-
 list = List.new
-
 one = Node.new("one")
 two = Node.new("two")
 three = Node.new("three")
 zero = Node.new("zero")
-
 list.append(one)
 list.append(two)
 list.append(three)
 list.prepend(zero)
-
 puts "One: " + one.inspect
 puts
 puts "Two: " + two.inspect
@@ -141,6 +134,7 @@ puts "Head: [Data: #{list.head.data.inspect}]-[Next: #{list.head.next.data.inspe
 puts
 puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
 puts
+list.pop
 puts "POP!"
 puts
 puts "Tail: [Data: #{list.tail.data.inspect}]-[Next: #{list.tail.next.inspect}]"
@@ -154,7 +148,6 @@ index_test = List.new
 puts
 puts "Error test: Index 5 of empty list: " + index_test.at(5).inspect
 puts
-list.pop
 puts "List contains 'two': " + list.contains?(two).to_s
 puts
 eightyeight = true
@@ -167,5 +160,4 @@ puts
 puts "Error test: Find 'eighteen': index is " + list.find("eighteen").inspect
 puts
 puts list.to_s
-
 =end
